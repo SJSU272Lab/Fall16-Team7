@@ -1,0 +1,9 @@
+Run it locally
+in terminal:
+/your path to/bin/spark-submit --jars $(echo lib/Untitled.jar | tr ' ' ',')\
+--class "SimpleApp" --master local[4] target/scala-2.11/simple-project_2.11-1.0.jar
+
+Deploy in Apache Spark in Bluemix need to add vcap.json and change the file path to object storage:
+in terminal:
+./spark-submit.sh --vcap vcap.json --jars $(echo lib/Untitled.jar | tr ' ' ',') --class "SimpleApp" --master https://spark.bluemix.net target/scala-2.11/simple-project_2.11-1.0.jar --deploy-mode cluster\
+--conf spark.service.spark_version=2.0 (--files /my/path/to/local/TwoWords.txt) \
