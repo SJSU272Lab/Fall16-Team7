@@ -1,0 +1,458 @@
+To see the log, in another terminal window run the following command:
+tail -f spark-submit_1481613423N.log
+
+Timestamp: 1481613423N
+Date: 2016-12-12 23:17:03
+VERSION: 1.0.6
+
+Command invocation: spark-submit.sh --vcap vcap.json --jars lib/Untitled.jar --class SimpleApp --master https://spark.bluemix.net target/scala-2.11/simple-project_2.11-1.0.jar --deploy-mode cluster --conf spark.service.spark_version=2.0
+
+Contents of vcap.json:
+{
+  "tenant_id": "s154-ebfc2a3b06f1f1-5b69a5467584",
+  "tenant_id_full": "63f1c5fd-503b-488b-a154-ebfc2a3b06f1_c08be3a9-1202-4a38-a4f1-5b69a5467584",
+  "cluster_master_url": "https://spark.bluemix.net",
+  "instance_id": "63f1c5fd-503b-488b-a154-ebfc2a3b06f1",
+  "tenant_secret": "c7b8217d-0d33-4fa4-949f-8b73b7fa7484",
+  "plan": "ibm.SparkService.PayGoPersonal"
+}
+Values passed with --conf option...
+
+	spark.service.spark_version : 2.0 
+
+Uploading lib/Untitled.jar
+local2server command: curl  -X PUT -u s154-ebfc2a3b06f1f1-5b69a5467584:c7b8217d-0d33-4fa4-949f-8b73b7fa7484 -H 'X-Spark-service-instance-id: 63f1c5fd-503b-488b-a154-ebfc2a3b06f1' --data-binary '@lib/Untitled.jar' https://spark.bluemix.net/tenant/data/95dc22301a6adc70be6bc5a5ca36a5c13de2c71f/Untitled.jar
+local2server result: {"url":"https://spark.bluemix.net/tenant/data/95dc22301a6adc70be6bc5a5ca36a5c13de2c71f/Untitled.jar"}
+
+Uploading target/scala-2.11/simple-project_2.11-1.0.jar
+local2server command: curl  -X PUT -u s154-ebfc2a3b06f1f1-5b69a5467584:c7b8217d-0d33-4fa4-949f-8b73b7fa7484 -H 'X-Spark-service-instance-id: 63f1c5fd-503b-488b-a154-ebfc2a3b06f1' --data-binary '@target/scala-2.11/simple-project_2.11-1.0.jar' https://spark.bluemix.net/tenant/data/95dc22301a6adc70be6bc5a5ca36a5c13de2c71f/simple-project_2.11-1.0.jar
+local2server result: {"url":"https://spark.bluemix.net/tenant/data/95dc22301a6adc70be6bc5a5ca36a5c13de2c71f/simple-project_2.11-1.0.jar"}
+
+Submitting Job
+Submit job command: curl  -X POST -H 'X-Requested-With: spark-submit' --data-binary '{ "action" : "CreateSubmissionRequest", "appArgs" : [ ], "appResource" : "95dc22301a6adc70be6bc5a5ca36a5c13de2c71f/simple-project_2.11-1.0.jar", "clientSparkVersion" : "2.0", "mainClass" : "SimpleApp", "sparkProperties" : { "spark.app.name" : "SimpleApp", "spark.jars" : "95dc22301a6adc70be6bc5a5ca36a5c13de2c71f/Untitled.jar,95dc22301a6adc70be6bc5a5ca36a5c13de2c71f/simple-project_2.11-1.0.jar", "spark.service.spark_version" : "2.0", "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484" }}' https://spark.bluemix.net/v1/submissions/create
+Submit job result: {
+  "action" : "CreateSubmissionResponse",
+  "message" : "Driver successfully submitted as driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+
+Submission ID: driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+
+Job submitted : driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+
+Polling job status.  Poll #1.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:17:22 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #2.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:17:34 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #3.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:17:45 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #4.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:17:57 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #5.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:18:09 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #6.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:18:21 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #7.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:18:33 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #8.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:18:45 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #9.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:18:57 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #10.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:19:08 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #11.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:19:20 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #12.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:19:33 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #13.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:19:44 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #14.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:19:56 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #15.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:20:08 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #16.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:20:19 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #17.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:20:31 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #18.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:20:43 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 212
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is RUNNING
+Next poll in 10 seconds.
+
+Polling job status.  Poll #19.
+
+Getting status
+call_status_REST command: curl  -X GET -H 'X-Requested-With: spark-submit' -i --data-binary '{ "sparkProperties" : { "spark.service.tenant_id" : "s154-ebfc2a3b06f1f1-5b69a5467584", "spark.service.instance_id" : "63f1c5fd-503b-488b-a154-ebfc2a3b06f1", "spark.service.tenant_secret" : "c7b8217d-0d33-4fa4-949f-8b73b7fa7484", "spark.service.spark_version" : "2.0" }}' https://spark.bluemix.net/v1/submissions/status/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d
+call_status_REST result: HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 13 Dec 2016 07:20:54 GMT
+Content-Type: application/json; charset=UTF-8
+Content-Length: 213
+Connection: keep-alive
+
+{
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "FINISHED",
+  "serverSparkVersion" : "2.0.2",
+  "submissionId" : "driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d",
+  "success" : true
+}
+driverStatus is FINISHED
+
+Job finished
+
+Downloading stdout_1481613423N
+server2local command: curl  -X GET -u s154-ebfc2a3b06f1f1-5b69a5467584:c7b8217d-0d33-4fa4-949f-8b73b7fa7484 -H 'X-Spark-service-instance-id: 63f1c5fd-503b-488b-a154-ebfc2a3b06f1' -D 'stdout_1481613423N.header' https://spark.bluemix.net/tenant/data/workdir/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d/stdout
+
+Downloading stderr_1481613423N
+server2local command: curl  -X GET -u s154-ebfc2a3b06f1f1-5b69a5467584:c7b8217d-0d33-4fa4-949f-8b73b7fa7484 -H 'X-Spark-service-instance-id: 63f1c5fd-503b-488b-a154-ebfc2a3b06f1' -D 'stderr_1481613423N.header' https://spark.bluemix.net/tenant/data/workdir/driver-20161213011720-0000-054f13ef-0bd8-4942-93aa-af08b0742b5d/stderr
+
+Deleting workspace on server
+deleteFolderOnServer command: curl  -X DELETE -u s154-ebfc2a3b06f1f1-5b69a5467584:c7b8217d-0d33-4fa4-949f-8b73b7fa7484 -H 'X-Spark-service-instance-id: 63f1c5fd-503b-488b-a154-ebfc2a3b06f1' https://spark.bluemix.net/tenant/data/95dc22301a6adc70be6bc5a5ca36a5c13de2c71f
+deleteFolderOnServer result: {}
+
+Submission complete.
+spark-submit log file: spark-submit_1481613423N.log
+View job's stdout log at stdout_1481613423N
+View job's stderr log at stderr_1481613423N
