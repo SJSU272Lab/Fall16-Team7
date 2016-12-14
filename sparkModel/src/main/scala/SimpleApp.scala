@@ -11,8 +11,8 @@ object SimpleApp {
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("Simple Application")
     val sc = new SparkContext(conf)
-    // while(true)
-    // {
+     while(true)
+     {
     	//input data every 10m
         val pathr = SparkTest.fileGen()
     	val rawDataR = sc.textFile("00000data3.txt")
@@ -33,8 +33,8 @@ object SimpleApp {
         val topKRecs3 = model.recommendProducts(3, 100)
     	Files.write(Paths.get("file3.txt"), topKRecs3.mkString("\n").getBytes(StandardCharsets.UTF_8))
         SparkTest.mapFile("file3.txt")
-        // Thread.sleep(600000)
-    // }
+         Thread.sleep(600000)
+     }
     sc.stop()
   }
 }
