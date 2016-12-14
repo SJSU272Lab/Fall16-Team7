@@ -11,4 +11,5 @@
 ## Division of the task
 + Tingting Wang 011492884 --> Front End development and deployment
 + Hui Wan 011493716 --> Database Operation and unit test
-
++ Qi Li 011168352 --> Implement ALS recommendation model
++ Jiheng Lu 010834239 --> Train model, predict and analyze result
