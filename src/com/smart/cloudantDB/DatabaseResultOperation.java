@@ -20,9 +20,9 @@ public class DatabaseResultOperation implements DatabaseOperation{
 	}
 	
 	public void dbInit() {
-		String account = "yourbluemixcloudantaccount";
-		String username = "yourbluemixcloudantusername";
-		String password = "yourbluemixcloudantpwd";
+		String account = "aca81918-9362-42f5-b167-48ea5023836b-bluemix";
+		String username = "tharyouguitheaduttlerest";
+		String password = "15857f25764e58d586b79b6fbdfc19660bb500a2";
 		CloudantClient client = ClientBuilder.account(account)
                 .username(username)
                 .password(password)
