@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geocoding service</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	height: 100%;
+}
+
+#floating-panel {
+	position: absolute;
+	top: 10px;
+	left: 200px;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	text-align: center;
+	font-family: 'Roboto', 'sans-serif';
+	line-height: 30px;
+	padding-left: 10px;
+}
+
+.divcss5 {
+	border: 1px solid #F00;
+	width: 600px;
+	height: 400px;
+}
+</style>
+</head>
+<body>
+	<div class="divcss5">
+		<div id="floating-panel">
+			<div ng-app="myApp">
+				<input id="address" type="textbox" value="Sydney, NSW"> <input
+					id="submit" type="button" value="Geocode">
+			</div>
+		</div>
+		<div id="map"></div>
+	</div>
+	<script>
+		function initMap() {
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom : 8,
+				center : {
+					lat : -34.397,
+					lng : 150.644
+				}
+			});
+			var geocoder = new google.maps.Geocoder();
+
+			document.getElementById('submit').addEventListener('click',
+					function() {
+						geocodeAddress(geocoder, map);
+					});
+
+		}
+
+		function geocodeAddress(geocoder, resultsMap) {
+			var address = document.getElementById('address').value;
+
+			geocoder
+					.geocode(
+							{
+								'address' : address
+							},
+							function(results, status) {
+								if (status === google.maps.GeocoderStatus.OK) {
+									resultsMap
+											.setCenter(results[0].geometry.location);
+									postgps(results[0]);
+
+									var marker = new google.maps.Marker({
+										map : resultsMap,
+										position : results[0].geometry.location
+									});
+								} else {
+									alert('Geocode was not successful for the following reason: '
+											+ status);
+								}
+							});
+		}
+
+		function postgps(results) {
+			var i, type, streetnumber, route, city, state, zipcode;
+
+			for (i = 0; i < results.address_components.length; i++) {
+				type = results.address_components[i].types;
+
+				if (null != type[0]) {
+
+					switch (type[0]) {
+
+					case "street_number":
+						streetnumber = results.address_components[i].long_name;
+
+						break;
+					case "route":
+						route = results.address_components[i].long_name;
+						break;
+					case "locality":
+						city = results.address_components[i].long_name;
+						break;
+					case "administrative_area_level_1":
+						state = results.address_components[i].long_name;
+						break;
+					case "postal_code":
+						zipcode = results.address_components[i].long_name;
+						break;
+					default:
+						i = i;
+
+					}
+				}
+			}
+
+			$.post("http://b1fc4d4f.ngrok.io/property/create", {
+				'host_id' : "zzz",
+				'property_id' : "1111",
+				'category' : 'nicai',
+				'place_id' : results.place_id,
+				'latitude' : results.geometry.location.lat,
+				'longtitude' : results.geometry.location.lng,
+				'address' : streetnumber + " " + route,
+				'city' : city,
+				'state' : state,
+				'zip_code' : zipcode,
+				'quantity' : 1
+
+			}, function(res) {
+
+			});
+			$.post("/gpsinfo", {
+				'host_id' : "zzz",
+				'property_id' : "1111",
+				'category' : 'nicai',
+				'place_id' : results.place_id,
+				'latitude' : results.geometry.location.lat,
+				'longtitude' : results.geometry.location.lng,
+				'address' : streetnumber + " " + route,
+				'city' : city,
+				'state' : state,
+				'zip_code' : zipcode,
+				'quantity' : 1
+
+			}, function(res) {
+
+			});
+
+		}
+	</script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyMXaBqJOWHtGJSATEH_XyV9LBqYV-rYE&callback=initMap"
+		async defer>
+		
+	</script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</body>
+</html>
