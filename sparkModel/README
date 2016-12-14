@@ -7,3 +7,12 @@ Deploy in Apache Spark in Bluemix need to add vcap.json and change the file path
 in terminal:
 ./spark-submit.sh --vcap vcap.json --jars $(echo lib/Untitled.jar | tr ' ' ',') --class "SimpleApp" --master https://spark.bluemix.net target/scala-2.11/simple-project_2.11-1.0.jar --deploy-mode cluster\
 --conf spark.service.spark_version=2.0 (--files /my/path/to/local/TwoWords.txt) \
+
+*Best clean all the target file and sbt package again
+
+for " --jars $(echo lib/Untitled.jar | tr ' ' ',')":
+1. import content of the spark-272 into eclipse as existed project, then use maven install in the eclipse menu
+2. export as runnable jar file into [yourproject]/lib
+3. run the command above
+
+by Jiheng Lu, Qi Li
