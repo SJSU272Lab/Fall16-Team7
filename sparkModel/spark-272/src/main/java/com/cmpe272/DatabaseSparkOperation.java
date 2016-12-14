@@ -20,9 +20,9 @@ public class DatabaseSparkOperation implements DatabaseOperation{
 	}
 	
 	public void dbInit() {
-		String account = "aca81918-9362-42f5-b167-48ea5023836b-bluemix";
-		String username = "befordstandidediabithedu";
-		String password = "2afdca66d2176d8373338a8013a94fd8d1699eef";
+		String account = "yourbluemixcloudantaccount";
+		String username = "yourbluemixcloudantusername";
+		String password = "yourbluemixcloudantpwd";
 		CloudantClient client = ClientBuilder.account(account)
                 .username(username)
                 .password(password)
