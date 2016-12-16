@@ -1,5 +1,6 @@
 # SmartAds
 ## Created by Team 7
++ Help us receive less spam ads, and help trades to make wise decisions to find the target people.
 + [about us](https://github.com/HenryWan19)
 
 ## How to use it
