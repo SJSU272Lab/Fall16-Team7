@@ -1,5 +1,7 @@
 # SmartAds
 ## Created by Team 7
++ [about us](https://github.com/HenryWan19)
+
 ## How to use it
 + Our App Url: http://cmpe272smartads.89mqwpbtjx.us-west-2.elasticbeanstalk.com/frontPage
 
