@@ -1,0 +1,17 @@
+We have make two different project about Spark on IBM Bluemix with 2 different methods. The
+first one is to make some analysis to the NASA datasets with external PySpark modules. The
+problem is as follows:
+https://data.nasa.gov/view/scmi-np9r
+
+Here is our jupyter_note_link:
+https://console.ng.bluemix.net/data/notebooks/c06e53ca-0081-4cc4-b927-115d66897bd9/
+view?
+access_token=e7921b13d6c12e2536a14cc5326ae54b40b5eb39c02c6af663a4d5744df83954
+
+The second one is about the Popularity of the name of the babies From 2014 To 2015 with a
+pandas dataframe. The problem is as follows:
+https://www.ssa.gov/oact/babynames/rankchange.html
+
+Here is our jupyter_notebook_link:
+https://console.ng.bluemix.net/data/notebooks/2cd99be1-4a5d-4e7a-9c5d-f5eadc73de14/view?
+access_token=4b6ad7d2bb1e16cf0f420c8924cee0622191130f5e49a834b5bfd9f2ca1011b9
