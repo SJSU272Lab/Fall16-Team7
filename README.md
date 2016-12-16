@@ -1,4 +1,6 @@
-# How to use it
+# SmartAds
+## Created by Team 7
+## How to use it
 ## Deploy to the aws cloud
 1. [AWS](http://cmpe272smartads.89mqwpbtjx.us-west-2.elasticbeanstalk.com/service)
 2. The front end is deployed  on AWS Elastic BeanStalk.
